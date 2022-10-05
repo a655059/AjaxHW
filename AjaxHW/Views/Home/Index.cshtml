@@ -12,9 +12,9 @@
 @section Scripts{
     <script src="~/js/travel.js"></script>
     <script>
-        var theDIV = document.getElementById("div1");
-        var text = "";
-        for (var i = 0; i < DATAS.length; i++) {
+        let theDIV = document.getElementById("div1");
+        let text = "";
+        for (let i = 0; i < DATAS.length; i++) {
             text += `<div class="card" style="width: 18rem;">
   <div class="card-body">
     <h5 class="card-title">${DATAS[i].Name}</h5>

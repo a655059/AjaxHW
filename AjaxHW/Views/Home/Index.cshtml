@@ -14,15 +14,15 @@
     <script>
         let theDIV = document.getElementById("div1");
         let text = "";
-        for (let i = 0; i < DATAS.length; i++) {
+        DATAS.forEach(data => {
             text += `<div class="card" style="width: 18rem;">
   <div class="card-body">
-    <h5 class="card-title">${DATAS[i].Name}</h5>
-    <p class="card-text">${DATAS[i].Toldescribe}</p>
-    <a href="#" class="card-link">${DATAS[i].Website}</a>
+    <h5 class="card-title">${data.Name}</h5>
+    <p class="card-text">${data.Toldescribe}</p>
+    <a href="#" class="card-link">${data.Website}</a>
   </div>
 </div>`;
-        }
+        });
         theDIV.innerHTML = text;
     </script>
 }

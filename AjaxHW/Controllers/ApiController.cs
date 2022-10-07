@@ -27,7 +27,7 @@ namespace AjaxHW.Controllers
         public IActionResult CheckName(string Name)
         {
             string rst = "1";
-            if(_context.Members.Where(i => i.Name == Name).FirstOrDefault() != null)
+            if(_context.Members.Any(i => i.Name == Name))
             {
                 rst = "0";
             }

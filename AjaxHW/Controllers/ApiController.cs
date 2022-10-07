@@ -12,9 +12,11 @@ namespace AjaxHW.Controllers
     public class ApiController : Controller
     {
         private readonly DemoContext _context;
-        public ApiController(DemoContext context)
+        private readonly NorthwindContext _northcontext;
+        public ApiController(DemoContext context, NorthwindContext northwindcontext)
         {
             _context = context;
+            _northcontext = northwindcontext;
         }
 
         public IActionResult Index()
@@ -48,6 +50,12 @@ namespace AjaxHW.Controllers
         {
             var roads = _context.Addresses.Where(a => a.SiteId == site).Select(a => a.Road).Distinct();
             return Json(roads);
+        }
+
+        public IActionResult GetProductNameByKeyword(string keyword)
+        {
+            var products = (from p in _northcontext.Products where p.ProductName.Contains(keyword) select p.ProductName).ToList();
+            return Json(products);
         }
     }
 }

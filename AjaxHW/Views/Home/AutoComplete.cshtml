@@ -1,0 +1,43 @@
+﻿@{
+    ViewData["Title"] = "AutoComplete";
+}
+
+
+
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-6">
+        <h3>AutoComplete</h3>
+        <input type="text" class="form-control" id="autoComplete">
+
+        <div class="list-group mt-3">
+        </div>
+    </div>
+    <div class="col-3"></div>
+</div>
+
+@section Scripts{
+    <script src="~/js/travel.js"></script>
+    <script>
+        const inputText = document.querySelector("#autoComplete")
+        const listData = document.querySelector(".list-group")
+        listData.style.display = "none"
+        inputText.addEventListener("input", async () => {
+            const keyword = inputText.value
+            listData.style.display = "block"
+            let res = await fetch("@Url.Content("~/api/GetProductNameByKeyword")"+`?keyword=${keyword}`);
+            let results = await res.json();
+            let htmlDatas = results.map(data => {
+                return (
+                    `<button type="button" onclick="read(event)" class="list-group-item list-group-item-action">${data}</button>`
+                )
+            })
+            listData.innerHTML = htmlDatas.join("")
+        })
+        function read(evt) {
+            inputText.value = evt.target.textContent
+            listData.style.display = "none"
+        }
+    </script>
+
+}

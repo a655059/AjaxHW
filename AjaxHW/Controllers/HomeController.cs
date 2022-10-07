@@ -42,5 +42,10 @@ namespace AjaxHW.Controllers
         {
             return View();
         }
+
+        public IActionResult AutoComplete()
+        {
+            return View();
+        }
     }
 }
